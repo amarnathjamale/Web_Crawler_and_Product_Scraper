@@ -1,35 +1,34 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import json
 import requests
 from bs4 import BeautifulSoup
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", template_folder="templates")
 
 BASE_URL = "https://oda.com/no/products/"
+HEADERS = {"User-Agent": "Mozilla/5.0"}
+
+session = requests.Session()
 
 def scrape_product(product_id):
     url = f"{BASE_URL}{product_id}/"
-    headers = {"User-Agent": "Mozilla/5.0"}
     
-    response = requests.get(url, headers=headers)
+    response = session.get(url, headers=HEADERS)
     if response.status_code != 200:
         return None
-    
+
     soup = BeautifulSoup(response.text, "html.parser")
     
-    # Extract product name
-    product_name = soup.find("title").text.strip()
-
+    product_name = soup.find("title").text.strip() if soup.find("title") else "Unknown Product"
+    price = "N/A"
     # Extract price from JSON-LD metadata
     script_tag = soup.find("script", type="application/ld+json")
     if script_tag:
         try:
-            product_data = json.loads(script_tag.string) 
+            product_data = json.loads(script_tag.string)
             price = product_data.get("offers", {}).get("price", "N/A")
         except json.JSONDecodeError:
-            price = "N/A"
-    else:
-        price = "N/A"
+            pass
 
     # Extract categories from breadcrumbs
     categories = []
@@ -43,12 +42,20 @@ def scrape_product(product_id):
         except json.JSONDecodeError:
             pass
 
-    return {
+    product_data = {
         "product_id": product_id,
         "name": product_name,
         "price": price,
         "categories": categories
     }
+
+    return product_data
+
+
+# Serve HTML via Flask
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 @app.route("/products", methods=["GET"])
 def get_products():
