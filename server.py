@@ -70,5 +70,13 @@ def get_products():
 
     return jsonify(products)
 
+@app.route("/product/<int:product_id>", methods=["GET"])
+def get_product(product_id):
+    product = scrape_product(product_id)
+    if product:
+        return jsonify(product)
+    return jsonify({"error": "Product not found"}), 404
+
+
 if __name__ == "__main__":
     app.run(debug=True)

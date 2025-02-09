@@ -3,6 +3,31 @@ body {
   text-align: center;
 }
 
+.search-container {
+  margin: 20px auto;
+  max-width: 400px;
+  display: flex;
+  gap: 10px;
+}
+
+#search-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#search-btn {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
 #product-container {
   display: flex;
   flex-wrap: wrap;
