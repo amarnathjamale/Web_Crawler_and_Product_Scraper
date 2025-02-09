@@ -3,6 +3,7 @@ let currentPage = 1;
 const itemsPerPage = 10;
 const API_URL = "http://127.0.0.1:5000";
 
+// Fetch products for each page
 async function fetchProducts() {
     const start = (currentPage - 1) * itemsPerPage + 1;
     const end = start + itemsPerPage - 1;
@@ -16,6 +17,7 @@ async function fetchProducts() {
     }
 }
 
+// Display product container
 function displayProducts() {
     const productContainer = document.getElementById("product-container");
     productContainer.innerHTML = ""; // Clear previous content
@@ -37,6 +39,8 @@ function displayProducts() {
     updatePagination();
 }
 
+// Search for a product using ID
+// TODO: Search using name
 async function searchProduct() {
     const searchValue = document.getElementById("search-input").value.trim();
     if (!searchValue) {
@@ -56,12 +60,13 @@ async function searchProduct() {
     }
 }
 
+// Display page numbers
 function updatePagination() {
     document.getElementById("page-info").innerText = `Page ${currentPage}`;
     document.getElementById("prev-btn").disabled = currentPage === 1;
 }
 
-
+// Previous button action
 document.getElementById("prev-btn").addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--;
@@ -69,11 +74,13 @@ document.getElementById("prev-btn").addEventListener("click", () => {
     }
 });
 
+// Next Button Action
 document.getElementById("next-btn").addEventListener("click", () => {
     currentPage++;
     fetchProducts();
 });
 
+// Search Button Action
 document.getElementById("search-btn").addEventListener("click", searchProduct);
 
 // Load products on page load
