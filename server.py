@@ -20,13 +20,14 @@ def scrape_product(product_id):
     soup = BeautifulSoup(response.text, "html.parser")
     
     product_name = soup.find("title").text.strip() if soup.find("title") else "Unknown Product"
-    price = "N/A"
-    # Extract price from JSON-LD metadata
+    price, image_url, brand = "N/A", "N/A", "Unknown"
     script_tag = soup.find("script", type="application/ld+json")
     if script_tag:
         try:
             product_data = json.loads(script_tag.string)
             price = product_data.get("offers", {}).get("price", "N/A")
+            image_url = product_data.get("image", [])[0] if "image" in product_data else "N/A"
+            brand = product_data.get("brand", "Unknown")
         except json.JSONDecodeError:
             pass
 
@@ -46,6 +47,8 @@ def scrape_product(product_id):
         "product_id": product_id,
         "name": product_name,
         "price": price,
+        "image_url": image_url,
+        "brand": brand,
         "categories": categories
     }
 

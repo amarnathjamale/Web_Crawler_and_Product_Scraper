@@ -25,7 +25,9 @@ function displayProducts() {
         productDiv.classList.add("product");
         productDiv.innerHTML = `
             <h3>${product.name}</h3>
-            <p><strong>Product ID:</strong> ${product.product_id}</p>
+            <img src="${product.image_url}" alt="${product.name}" width="150"/>
+            <p><strong>ID:</strong> ${product.product_id}</p>
+            <p><strong>Brand:</strong> ${product.brand}</p>
             <p><strong>Price:</strong> ${product.price}</p>
             <p><strong>Categories:</strong> ${product.categories.join(", ")}</p>
         `;
@@ -48,7 +50,7 @@ async function searchProduct() {
 
         document.getElementById("search-result").innerHTML = data.error
             ? `<p style="color: red;">Product Not Found!</p>`
-            : `<div class="product"><h3>${data.name}</h3><p><strong>Price:</strong> ${data.price}</p></div>`;
+            : `<div class="product"><h3>${data.name}</h3><img src="${data.image_url}" alt="${data.name}" width="150"/><p><strong>Price:</strong> ${data.price}</p></div>`;
     } catch (error) {
         console.error("Error searching product:", error);
     }
