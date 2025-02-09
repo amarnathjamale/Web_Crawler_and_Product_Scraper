@@ -2,8 +2,11 @@ from flask import Flask, jsonify, request, render_template
 import json
 import requests
 from bs4 import BeautifulSoup
+from flask_caching import Cache
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
+
+cache = Cache(app, config={"CACHE_TYPE": "simple"})
 
 BASE_URL = "https://oda.com/no/products/"
 HEADERS = {"User-Agent": "Mozilla/5.0"}
@@ -12,7 +15,11 @@ session = requests.Session()
 
 def scrape_product(product_id):
     url = f"{BASE_URL}{product_id}/"
-    
+
+    cached_data = cache.get(url)
+    if cached_data:
+        return cached_data
+
     response = session.get(url, headers=HEADERS)
     if response.status_code != 200:
         return None
@@ -51,6 +58,8 @@ def scrape_product(product_id):
         "brand": brand,
         "categories": categories
     }
+
+    cache.set(url, product_data, timeout=3600)
 
     return product_data
 
