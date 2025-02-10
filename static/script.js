@@ -1,7 +1,7 @@
 let products = [];
 let currentPage = 1;
 const itemsPerPage = 10;
-const API_URL = "http://127.0.0.1:80";
+const API_URL = "http://127.0.0.1:5000";
 
 // Fetch products for each page
 async function fetchProducts() {
