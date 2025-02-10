@@ -1,0 +1,92 @@
+[
+    {
+        "product_id": 1,
+        "name": "Sprett Yoghurt Skogsbær - Oda",
+        "price": "25.90",
+        "categories": [
+            "Hjem",
+            "Alle produkter",
+            "Meieri, ost og egg",
+            "Yoghurt"
+        ]
+    },
+    {
+        "product_id": 3,
+        "name": "Vaniljekrem - Oda",
+        "price": "23.90",
+        "categories": [
+            "Hjem",
+            "Alle produkter",
+            "Iskrem, kaker og kjeks",
+            "Dessert"
+        ]
+    },
+    {
+        "product_id": 4,
+        "name": "Tørrgjær Original - Oda",
+        "price": "13.90",
+        "categories": [
+            "Hjem",
+            "Alle produkter",
+            "Bakeingredienser",
+            "Baketilbehør"
+        ]
+    },
+    {
+        "product_id": 5,
+        "name": "Vafler - Oda",
+        "price": "25.90",
+        "categories": [
+            "Hjem",
+            "Alle produkter",
+            "Bakeingredienser",
+            "Ferdigmikser",
+            "Pannekaker og vafler"
+        ]
+    },
+    {
+        "product_id": 6,
+        "name": "Valnøttkjerner - Oda",
+        "price": "41.90",
+        "categories": [
+            "Hjem",
+            "Alle produkter",
+            "Bakeingredienser",
+            "Baketilbehør"
+        ]
+    },
+    {
+        "product_id": 8,
+        "name": "Strøssel - Oda",
+        "price": "28.50",
+        "categories": [
+            "Hjem",
+            "Alle produkter",
+            "Bakeingredienser",
+            "Baketilbehør"
+        ]
+    },
+    {
+        "product_id": 9,
+        "name": "Sukat - Oda",
+        "price": "18.90",
+        "categories": [
+            "Hjem",
+            "Alle produkter",
+            "Bakeingredienser",
+            "Baketilbehør"
+        ]
+    },
+    {
+        "product_id": 10,
+        "name": "Muffins Mix - Oda",
+        "price": "47.00",
+        "categories": [
+            "Hjem",
+            "Alle produkter",
+            "Bakeingredienser",
+            "Ferdigmikser",
+            "Kakemikser"
+        ]
+    }
+]
