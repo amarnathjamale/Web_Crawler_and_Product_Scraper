@@ -44,7 +44,8 @@ def scrape_product(product_id):
         try:
             product_data = json.loads(script_tag.string)
             price = product_data.get("offers", {}).get("price", "N/A")
-            image_url = product_data.get("image", [])[0] if "image" in product_data else "N/A"
+            image_list = product_data.get("image", [])
+            image_url = image_list[0] if image_list else "N/A"
             brand = product_data.get("brand", "Unknown")
         except json.JSONDecodeError:
             pass
